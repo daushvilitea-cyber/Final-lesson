@@ -21,7 +21,7 @@ form.addEventListener("submit", (event) => {
 
   let hasError = false;
   if (!emailInput.value.includes("@") || !emailInput.value.includes(".")) {
-    emailError.textContent = "ელფოსტა უნდა შეიცავდეს @ და . სიმბოლოებს";
+    emailError.textContent = "გთხოვთ, შეიყვანეთ ვალიდური ელ.ფოსტა";
     hasError = true;
   }
 

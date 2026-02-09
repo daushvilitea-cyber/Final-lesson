@@ -1,6 +1,19 @@
 const productsBox = document.getElementById("products");
 const loadingProducts = document.getElementById("loading");
 
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const addToCart = (product) => {
+  cart.push(product);
+  updateCount();
+  localStorage.setItem("cart", JSON.stringify(cart));
+  console.log(cart);
+};
+
+const updateCount = () => {
+  const cartCount = document.getElementById("cartCount");
+  cartCount.textContent = cart.length;
+};
+
 const fetchProducts = async () => {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
@@ -28,8 +41,12 @@ const renderProducts = (products) => {
     `;
     const cartBtn = productCard.querySelector(".cart");
     cartBtn.addEventListener("click", () => {
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCount();
       alert(`პროდუქტი "${product.title}" დამატებულია კალათში!`);
     });
   });
 };
+updateCount();
 fetchProducts();
