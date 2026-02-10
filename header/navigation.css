@@ -29,9 +29,10 @@
 #search {
   padding: 5px;
   width: 50vw;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  border-radius: 20px;
+  border: 1px solid #ffffff;
   height: 8vh;
+  background-color: rgba(255, 255, 255, 0.471);
 }
 
 @media screen and (max-width: 768px) {
