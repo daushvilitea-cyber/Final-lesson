@@ -1,22 +1,34 @@
 const productsBox = document.getElementById("products");
 const loadingProducts = document.getElementById("loading");
 
+let allProducts = [];
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-const addToCart = (product) => {
-  cart.push(product);
-  updateCount();
-  localStorage.setItem("cart", JSON.stringify(cart));
-};
 
 const updateCount = () => {
   const cartCount = document.getElementById("cartCount");
-  cartCount.textContent = cart.length;
+  if (!cartCount) return;
+  const cartStorage = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalCount = cartStorage.reduce((acc, item) => acc + item.quantity, 0);
+  cartCount.textContent = totalCount;
+};
+const addToCart = (product) => {
+  const existingProduct = cart.find((item) => item.id === product.id);
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    product.quantity = 1;
+    cart.push(product);
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCount();
 };
 
 const fetchProducts = async () => {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
     const products = await response.json();
+    allProducts = products;
     renderProducts(products);
     loadingProducts.style.display = "none";
   } catch (error) {
@@ -40,12 +52,20 @@ const renderProducts = (products) => {
     `;
     const cartBtn = productCard.querySelector(".cart");
     cartBtn.addEventListener("click", () => {
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      updateCount();
+      addToCart(product);
       alert(`პროდუქტი "${product.title}" დამატებულია კალათში!`);
     });
   });
 };
+const params = new URLSearchParams(window.location.search);
+const searchValue = params.get("search");
+
+if (searchValue) {
+  const filtered = allProducts.filter((product) => product.title.toLowerCase());
+  renderProducts(filtered);
+} else {
+  renderProducts(allProducts);
+}
+
 updateCount();
 fetchProducts();
