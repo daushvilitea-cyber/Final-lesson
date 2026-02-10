@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="./register.css" />
+  </head>
+  <body>
+    <form id="registerForm" novalidate>
+      <h2>რეგისტრაცია</h2>
+      <label>
+        სახელი:
+        <input type="text" id="name" />
+      </label>
+      <small class="error" id="nameError"></small>
+
+      <label>
+        მეილი:
+        <input type="email" id="email" />
+      </label>
+      <small class="error" id="emailError"></small>
+
+      <label>
+        პაროლი:
+        <input type="password" id="password" />
+      </label>
+      <small class="error" id="passwordError"></small>
+
+      <label>
+        გაიმეორეთ პაროლი:
+        <input type="password" id="password2" />
+      </label>
+      <small class="error" id="password2Error"></small>
+      <button type="submit">რეგისტრაცია</button>
+      <p>
+        უკვე გაქვთ ექაუნთი?
+        <a href="../home page/index.html">შესვლა</a>
+      </p>
+    </form>
+    <div class="modal" id="succesModal">
+      <div id="modalContent">
+        <h2>წარმატებით დარეგისტრირდით!</h2>
+        <button id="closeModal">დახურვა</button>
+      </div>
+    </div>
+
+    <script src="./register.js"></script>
+  </body>
+</html>

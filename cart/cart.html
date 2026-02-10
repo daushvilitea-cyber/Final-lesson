@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>კალათა</title>
+    <link rel="stylesheet" href="./cart.css" />
+    <link rel="stylesheet" href="../header/navigation.css" />
+  </head>
+  <body>
+    <header id="hdr">
+      <nav id="nav">
+        <img
+          src="../assets/Online-shopping-logo-template-on-transparent-background-PNG.png"
+          alt="logo"
+          width="80px"
+        />
+        <input
+          type="search"
+          placeholder="მოძებნე სასურველი პროდუქტი"
+          id="search"
+        />
+        <ul>
+          <li>
+            <a href="../products/products.html" target="_blank">პროდუქტები</a>
+          </li>
+          <li>
+            <a href="../cart/cart.html" target="_blank"
+              >კალათა
+              <span id="cartCount">0</span>
+            </a>
+          </li>
+          <li><a href="../profile/profile.html" target="_blank">პროფილი</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="box">
+      <div id="cartBox"></div>
+      <div id="totalBox"></div>
+    </div>
+
+    <script src="./cart.js"></script>
+    <script src="../header/navigation.js"></script>
+  </body>
+</html>
